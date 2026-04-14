@@ -1,81 +1,185 @@
-# AI Clinical Decision Support System 🏥
+# 🏥 AI Clinical Decision Support System
 
-## Overview
-A full-stack AI-powered clinical assistant that helps analyze patient symptoms using Google Gemini AI and stores patient history in MySQL.
+## 📌 Overview
 
-## Tech Stack
-- Frontend: React.js
-- Backend: Node.js, Express
-- AI: Google Gemini API
-- Database: MySQL
+The **AI Clinical Decision Support System** is a full-stack web application designed to assist healthcare professionals in analyzing patient symptoms using artificial intelligence.
 
-## Features
-- AI-powered symptom analysis
-- Risk classification (Low, Medium, High)
-- Patient history storage
-- Clean medical report UI
+It leverages **Google Gemini AI** to provide:
+
+* Possible clinical conditions (not a final diagnosis)
+* Risk level assessment
+* Medical recommendations
+* Concise patient summaries
+
+All patient data and analysis results are stored in a **MySQL database** for tracking and future reference.
+
+---
+
+## 🚀 Features
+
+* 🤖 AI-powered symptom analysis
+* ⚠️ Risk classification (Low, Medium, High)
+* 📊 Structured clinical recommendations
+* 🧾 Patient history tracking
+* 🎯 Clean and user-friendly interface
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend:** React.js
+* **Backend:** Node.js, Express
+* **AI Integration:** Google Gemini API
+* **Database:** MySQL
+
+---
 
 ## ⚙️ Installation & Setup
 
-### 1️⃣ Clone Repository
+### 1️⃣ Clone the Repository
+
 ```bash
-git clone https://github.com/minasty/ai-clinical-decision-support-system
+git clone https://github.com/minasty/ai-clinical-decision-support-system.git
 cd ai-clinical-decision-support-system
+```
 
-# Environment Variables:
-Create a .env file inside the backend folder:
-AI_API_KEY=your_api_key_here
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_password
-DB_NAME=clinical_ai
-PORT=5000
+---
 
-#Database Setup:
-    ##Create Database:
-    CREATE DATABASE clinical_db;
+### 2️⃣ Backend Setup
 
-    ##Create Table:
-    CREATE TABLE patients (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    symptoms TEXT NOT NULL,
-    diagnosis TEXT,
-    risk_level VARCHAR(10),
-    recommendation TEXT NOT NULL,
-    summary TEXT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    );
-
-## How to run:
-
-### Backend:
 ```bash
 cd backend
 npm install
-node server.js
+```
 
-### frontend
+#### 🔐 Environment Variables
+
+Create a `.env` file inside the `backend` folder:
+
+```env
+GEMINI_API_KEY=your_api_key_here
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=clinical_db
+PORT=5000
+```
+
+---
+
+### 3️⃣ Database Setup
+
+Run the following SQL commands:
+
+```sql
+CREATE DATABASE clinical_db;
+
+USE clinical_db;
+
+CREATE TABLE patients (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  age INT,
+  symptoms TEXT NOT NULL,
+  temperature FLOAT,
+  heart_rate INT,
+  diagnosis TEXT,
+  risk_level VARCHAR(10),
+  recommendation TEXT,
+  summary TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+---
+
+### 4️⃣ Run the Backend
+
 ```bash
-cd frontend
+node server.js
+```
+
+---
+
+### 5️⃣ Frontend Setup
+
+```bash
+cd ../frontend
 npm install
 npm start
+```
 
-## Screenshots
+---
 
-### Patient Form
+## 📸 Screenshots
+
+### 🔹 Patient Input Form
+
 ![Form](app-screenshots/input_UI.jpg)
 
-### AI Result
+### 🔹 AI Clinical Result
+
 ![Result](app-screenshots/result_UI.jpg)
 
-### Patient History
+### 🔹 Patient History
+
 ![History](app-screenshots/patient_history_UI.jpg)
 
-# Author:
-Anastase Minani
-    - Software Developer
-    - AI & Embedded Systems Enthusiast
+---
 
-⚠️ Disclaimer:
-    This application is intended for support purposes only.
-    It does not replace professional medical advice or diagnosis.
+## 📁 Project Structure
+
+```
+ai-clinical-decision-support-system/
+│
+├── backend/
+│   ├── server.js
+│   ├── db.js
+│   ├── aiService.js
+│   ├── package.json
+│
+├── frontend/
+│   ├── src/
+│   ├── App.js
+│   ├── package.json
+│
+├── README.md
+└── .gitignore
+```
+
+---
+
+## ⚠️ Disclaimer
+
+This system is intended for **support purposes only**.
+It does **not replace professional medical diagnosis or treatment**.
+
+---
+
+## 👨‍💻 Author
+
+**Anastase Minani**
+
+* Software Developer
+* AI & Embedded Systems Enthusiast
+
+---
+
+## ⭐ Future Improvements
+
+* 📊 AI confidence scoring
+* 🔔 Critical patient alert system
+* 🧾 PDF medical report generation
+* ☁️ Cloud deployment (Docker, AWS, Render)
+
+---
+
+## 📬 Contributing
+
+Contributions are welcome! Feel free to fork the repository and submit a pull request.
+
+---
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
+
