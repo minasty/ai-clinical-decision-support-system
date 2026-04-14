@@ -68,7 +68,16 @@ app.get('/patients', async (req, res) => {
     res.status(500).json({ error: "Error fetching patients" });
   }
 });
-
+// test database
+app.get("/test-db", async (req, res) => {
+  try {
+    const [rows] = await pool.query("SELECT 1");
+    res.json({ message: "DB Connected ✅", rows });
+  } catch (err) {
+    console.error("DB ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
