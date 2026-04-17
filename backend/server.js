@@ -65,7 +65,8 @@ app.get('/patients', async (req, res) => {
     res.json(formatted);
 
   } catch (err) {
-    res.status(500).json({ error: "Error fetching patients" });
+   // res.status(500).json({ error: "Error fetching patients" });
+    res.status(500).json({ error: err.message });
   }
 });
 // test database
