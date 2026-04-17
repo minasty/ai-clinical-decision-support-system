@@ -16,7 +16,9 @@ function App() {
       setLoading(true);
       setError("");
 
-      const res = await axios.post("http://localhost:5000/analyze-patient", {
+      //const res = await axios.post("http://localhost:5000/analyze-patient", 
+      const res = await axios.post("https://ai-clinical-api.onrender.com/analyze-patient",
+      {
         age: Number(age),
         symptoms: symptoms.split(",").map(s => s.trim()),
         temperature: Number(temperature),
@@ -34,7 +36,8 @@ function App() {
 
   const loadHistory = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/patients");
+      //const res = await axios.get("http://localhost:5000/patients");
+      const res = await axios.get("https://ai-clinical-api.onrender.com/patients");
       setHistory(res.data);
     } catch (err) {
       console.error(err);
