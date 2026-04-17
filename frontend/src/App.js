@@ -13,6 +13,10 @@ function App() {
 
   const handleSubmit = async () => {
     try {
+       if (!age || !symptoms || !temperature || !heartRate) {
+      setError("Please fill all fields");
+      return;
+      }
       setLoading(true);
       setError("");
 
