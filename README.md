@@ -1,36 +1,36 @@
 # 🏥 AI Clinical Decision Support System
 
+## 🌐 Live Demo
+👉 https://ai-clinical-decision-support-system-beige.vercel.app/
+
+---
+
 ## 📌 Overview
+A full-stack AI-powered clinical assistant that analyzes patient symptoms and provides **preliminary medical insights** using Google Gemini AI.
 
-The **AI Clinical Decision Support System** is a full-stack web application designed to assist healthcare professionals in analyzing patient symptoms using artificial intelligence.
-
-It leverages **Google Gemini AI** to provide:
-
-* Possible clinical conditions (not a final diagnosis)
-* Risk level assessment
-* Medical recommendations
-* Concise patient summaries
-
-All patient data and analysis results are stored in a **MySQL database** for tracking and future reference.
+⚠️ This system is for **educational and decision-support purposes only** and does not replace professional medical diagnosis.
 
 ---
 
-## 🚀 Features
+## 🧠 System Architecture
 
-* 🤖 AI-powered symptom analysis
-* ⚠️ Risk classification (Low, Medium, High)
-* 📊 Structured clinical recommendations
-* 🧾 Patient history tracking
-* 🎯 Clean and user-friendly interface
+Frontend → Backend → Database → AI Model
+
+- **Frontend:** React.js (deployed on Vercel)
+- **Backend:** Node.js + Express (deployed on Render)
+- **Database:** MySQL (Railway)
+- **AI Engine:** Google Gemini API
 
 ---
 
-## 🛠️ Tech Stack
+## ⚙️ Tech Stack
 
-* **Frontend:** React.js
-* **Backend:** Node.js, Express
-* **AI Integration:** Google Gemini API
-* **Database:** MySQL
+- React.js
+- Node.js & Express
+- MySQL (Railway Cloud DB)
+- Google Gemini API
+- Axios
+- CORS / dotenv
 
 ---
 
