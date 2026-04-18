@@ -33,7 +33,17 @@ Frontend → Backend → Database → AI Model
 - CORS / dotenv
 
 ---
+## ✨ Features
 
+- 🔍 AI-powered symptom analysis
+- ⚠️ Risk classification (Low, Medium, High)
+- 📊 Clinical-style response (Diagnosis, Recommendation, Summary)
+- 💾 Patient history storage (MySQL)
+- 🌐 Fully deployed full-stack system
+- 🧹 Clear/reset functionality
+- 📜 Patient history viewer
+
+---
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone the Repository
