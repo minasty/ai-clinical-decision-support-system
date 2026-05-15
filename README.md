@@ -16,9 +16,9 @@ A full-stack AI-powered clinical assistant that analyzes patient symptoms and pr
 
 Frontend → Backend → Database → AI Model
 
-- **Frontend:** React.js (deployed on Vercel)
-- **Backend:** Node.js + Express (deployed on Render)
-- **Database:** MySQL (Railway)
+- **Frontend:** React.js (deployed on Vercel cloud)
+- **Backend:** Node.js + Express (deployed on Render cloud)
+- **Database:** MySQL (deployed on Neon cloud)
 - **AI Engine:** Google Gemini API
 
 ---
