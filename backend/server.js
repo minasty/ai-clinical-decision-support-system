@@ -3,13 +3,15 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
+const authenticate = require("./middleware/authenticate");
 const pool = require('./db');
 const { analyzePatient } = require('./aiService');
-
+const authRoutes = require("./routes/authRoutes");
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/api/auth", authRoutes);
 
 const PORT = process.env.PORT || 5000;
 
@@ -20,7 +22,7 @@ app.get('/', (req, res) => {
 
 
 // 🔹 Analyze patient
-app.post('/analyze-patient', async (req, res) => {
+app.post('/analyze-patient',authenticate, async (req, res) => {
   try {
     const data = req.body;
 
@@ -52,7 +54,7 @@ app.post('/analyze-patient', async (req, res) => {
 
 
 // 🔹 Get patient history
-app.get('/patients', async (req, res) => {
+app.get('/patients', authenticate, async (req, res) => {
   try {
     const result = await pool.query(
       "SELECT * FROM patients ORDER BY id DESC LIMIT 2"
