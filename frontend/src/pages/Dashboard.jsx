@@ -1,10 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+import "./Dashboard.css";
+
+
 function Dashboard() {
 
     const { user, logout } = useAuth();
     const navigate = useNavigate();
+
 
     const handleLogout = () => {
 
@@ -14,76 +18,170 @@ function Dashboard() {
 
     };
 
+
     return (
 
-        <div className="dashboard-container">
+        <div className="dashboard-page">
 
-            <h1>AI Clinical Decision Support System</h1>
 
-            <hr />
+            {/* Header */}
 
-            <h2>
-                Welcome, {user?.full_name}
-            </h2>
+            <header className="dashboard-header">
 
-            <p>
-                <strong>Email:</strong> {user?.email}
-            </p>
+                <div>
 
-            <p>
-                <strong>Role:</strong> {user?.role}
-            </p>
+                    <h1>
+                        AI Clinical Decision Support System
+                    </h1>
 
-            <hr />
+                    <p>
+                        Intelligent healthcare assistance platform
+                    </p>
 
-            <h3>Quick Actions</h3>
+                </div>
 
-            <div
-                style={{
-                    display: "flex",
-                    gap: "20px",
-                    marginBottom: "20px"
-                }}
-            >
 
-                <Link to="/analyze">
-                    <button>
-                        Analyze Patient
-                    </button>
-                </Link>
+                <button
+                    className="logout-button"
+                    onClick={handleLogout}
+                >
+                    Logout
+                </button>
 
-                <Link to="/history">
-                    <button>
-                        Patient History
-                    </button>
-                </Link>
 
-            </div>
+            </header>
 
-            <hr />
 
-            <h3>System Information</h3>
 
-            <p>✔ Logged in successfully</p>
+            <main className="dashboard-content">
 
-            <p>✔ AI Clinical Decision Support System is ready.</p>
 
-            <p>
-                ✔ Current User: {user?.role}
-            </p>
 
-            <br />
+                {/* User Profile */}
 
-            <button
-                onClick={handleLogout}
-            >
-                Logout
-            </button>
+                <section className="profile-card">
+
+                    <h2>
+                        Welcome, {user?.full_name}
+                    </h2>
+
+
+                    <div className="user-details">
+
+                        <p>
+                            <strong>Email:</strong>
+                            {" "}
+                            {user?.email}
+                        </p>
+
+
+                        <p>
+                            <strong>Role:</strong>
+                            {" "}
+                            {user?.role}
+                        </p>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+
+                {/* Quick Actions */}
+
+                <section>
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+
+                    <div className="action-container">
+
+
+                        <Link
+                            to="/analyze"
+                            className="action-card"
+                        >
+
+                            <h3>
+                                🩺 Analyze Patient
+                            </h3>
+
+                            <p>
+                                Use AI to analyze patient symptoms and provide clinical insights.
+                            </p>
+
+                        </Link>
+
+
+
+
+                        <Link
+                            to="/history"
+                            className="action-card"
+                        >
+
+                            <h3>
+                                📋 Patient History
+                            </h3>
+
+                            <p>
+                                View previous patient analysis records.
+                            </p>
+
+                        </Link>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+
+
+                {/* System Information */}
+
+                <section className="system-card">
+
+
+                    <h2>
+                        System Information
+                    </h2>
+
+
+                    <p>
+                        ✅ Logged in successfully
+                    </p>
+
+
+                    <p>
+                        ✅ AI Clinical Decision Support System is ready
+                    </p>
+
+
+                    <p>
+                        ✅ Current User Role: {user?.role}
+                    </p>
+
+
+                </section>
+
+
+
+            </main>
+
 
         </div>
 
     );
 
 }
+
 
 export default Dashboard;
