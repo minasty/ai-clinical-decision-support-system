@@ -1,61 +1,22 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+
+import Navbar from "../components/Navbar";
 
 import "./Dashboard.css";
 
-
 function Dashboard() {
 
-    const { user, logout } = useAuth();
-    const navigate = useNavigate();
-
-
-    const handleLogout = () => {
-
-        logout();
-
-        navigate("/login");
-
-    };
-
+    const { user } = useAuth();
 
     return (
 
         <div className="dashboard-page">
 
-
-            {/* Header */}
-
-            <header className="dashboard-header">
-
-                <div>
-
-                    <h1>
-                        AI Clinical Decision Support System
-                    </h1>
-
-                    <p>
-                        Intelligent healthcare assistance platform
-                    </p>
-
-                </div>
-
-
-                <button
-                    className="logout-button"
-                    onClick={handleLogout}
-                >
-                    Logout
-                </button>
-
-
-            </header>
-
-
+            {/* Navigation Bar */}
+            <Navbar />
 
             <main className="dashboard-content">
-
-
 
                 {/* User Profile */}
 
@@ -65,30 +26,21 @@ function Dashboard() {
                         Welcome, {user?.full_name}
                     </h2>
 
-
                     <div className="user-details">
 
                         <p>
-                            <strong>Email:</strong>
-                            {" "}
+                            <strong>Email:</strong>{" "}
                             {user?.email}
                         </p>
 
-
                         <p>
-                            <strong>Role:</strong>
-                            {" "}
+                            <strong>Role:</strong>{" "}
                             {user?.role}
                         </p>
 
-
                     </div>
 
-
                 </section>
-
-
-
 
                 {/* Quick Actions */}
 
@@ -98,9 +50,7 @@ function Dashboard() {
                         Quick Actions
                     </h2>
 
-
                     <div className="action-container">
-
 
                         <Link
                             to="/analyze"
@@ -117,9 +67,6 @@ function Dashboard() {
 
                         </Link>
 
-
-
-
                         <Link
                             to="/history"
                             className="action-card"
@@ -135,53 +82,38 @@ function Dashboard() {
 
                         </Link>
 
-
                     </div>
 
-
                 </section>
-
-
-
-
 
                 {/* System Information */}
 
                 <section className="system-card">
 
-
                     <h2>
                         System Information
                     </h2>
-
 
                     <p>
                         ✅ Logged in successfully
                     </p>
 
-
                     <p>
                         ✅ AI Clinical Decision Support System is ready
                     </p>
-
 
                     <p>
                         ✅ Current User Role: {user?.role}
                     </p>
 
-
                 </section>
 
-
-
             </main>
-
 
         </div>
 
     );
 
 }
-
 
 export default Dashboard;
