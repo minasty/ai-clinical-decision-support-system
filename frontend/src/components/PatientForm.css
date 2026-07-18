@@ -1,0 +1,113 @@
+.patient-form{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:10px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+
+}
+
+.patient-form h2{
+
+    margin-bottom:20px;
+
+    color:#1976d2;
+
+}
+
+.patient-form label{
+
+    display:block;
+
+    margin-bottom:15px;
+
+    font-weight:600;
+
+}
+
+.patient-form input{
+
+    width:100%;
+
+    padding:10px;
+
+    margin-top:5px;
+
+    border:1px solid #ccc;
+
+    border-radius:6px;
+
+    box-sizing:border-box;
+
+}
+
+.symptoms{
+
+    margin:25px 0;
+
+}
+
+.checkbox{
+
+    display:flex !important;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:10px;
+
+    font-weight:normal !important;
+
+}
+
+.checkbox input{
+
+    width:auto;
+
+}
+
+.patient-form button{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:6px;
+
+    background:#1976d2;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+.patient-form button:hover{
+
+    background:#1565c0;
+
+}
+
+.patient-form button:disabled{
+
+    background:#999;
+
+    cursor:not-allowed;
+
+}
+
+.error{
+
+    color:red;
+
+    margin-bottom:20px;
+
+}
