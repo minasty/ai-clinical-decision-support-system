@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import "./Navbar.css";
 
 function Navbar() {
 
@@ -42,11 +43,12 @@ function Navbar() {
 
             <div className="navbar-user">
 
-                <span>
-                    Welcome, {user?.full_name}
+                <span className="user-name">
+                    Welcome, {user?.full_name} ({user?.role})
                 </span>
 
                 <button
+                    className="logout-btn"
                     onClick={handleLogout}
                 >
                     Logout
