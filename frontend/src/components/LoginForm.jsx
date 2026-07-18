@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { login as loginService } from "../services/authService";
 import { useAuth } from "../context/AuthContext";
 
+import "./LoginForm.css";
+
 function LoginForm() {
 
     const navigate = useNavigate();
@@ -15,10 +17,9 @@ function LoginForm() {
     });
 
     const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState("");
 
-    // Update input fields
+
     const handleChange = (e) => {
 
         setFormData({
@@ -28,7 +29,7 @@ function LoginForm() {
 
     };
 
-    // Submit login
+
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -38,10 +39,10 @@ function LoginForm() {
         if (!formData.email || !formData.password) {
 
             setError("Email and password are required.");
-
             return;
 
         }
+
 
         try {
 
@@ -49,11 +50,10 @@ function LoginForm() {
 
             const response = await loginService(formData);
 
-            // Save user in AuthContext
             login(response.user, response.token);
 
-            // Redirect to dashboard
             navigate("/dashboard");
+
 
         } catch (err) {
 
@@ -67,62 +67,75 @@ function LoginForm() {
 
     };
 
+
     return (
 
-        <div className="login-container">
+        <div className="login-page">
 
-            <h2>Login</h2>
+            <div className="login-card">
 
-            {error && (
-                <p style={{ color: "red" }}>
-                    {error}
+                <h2>Welcome Back</h2>
+
+                <p className="login-subtitle">
+                    Login to your account
                 </p>
-            )}
 
-            <form onSubmit={handleSubmit}>
 
-                <div>
+                {error && (
+                    <div className="error-message">
+                        {error}
+                    </div>
+                )}
 
-                    <label>Email</label>
 
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Enter email"
-                    />
+                <form onSubmit={handleSubmit}>
 
-                </div>
 
-                <br />
+                    <div className="form-group">
 
-                <div>
+                        <label>Email Address</label>
 
-                    <label>Password</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Enter your email"
+                        />
 
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="Enter password"
-                    />
+                    </div>
 
-                </div>
 
-                <br />
+                    <div className="form-group">
 
-                <button
-                    type="submit"
-                    disabled={loading}
-                >
+                        <label>Password</label>
 
-                    {loading ? "Logging in..." : "Login"}
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Enter your password"
+                        />
 
-                </button>
+                    </div>
 
-            </form>
+
+
+                    <button
+                        className="login-button"
+                        type="submit"
+                        disabled={loading}
+                    >
+
+                        {loading ? "Logging in..." : "Login"}
+
+                    </button>
+
+
+                </form>
+
+            </div>
 
         </div>
 
