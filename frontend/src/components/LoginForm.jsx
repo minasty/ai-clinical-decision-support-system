@@ -74,7 +74,7 @@ function LoginForm() {
 
             <div className="login-card">
 
-                <h2>Welcome Back</h2>
+                <h2>AI CLINICAL DECISION SUPPORT SYSTEM</h2>
 
                 <p className="login-subtitle">
                     Login to your account
