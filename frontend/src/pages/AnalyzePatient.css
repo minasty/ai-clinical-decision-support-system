@@ -1,0 +1,37 @@
+.analyze-page{
+    min-height:100vh;
+    background:#f4f7fb;
+}
+
+.analyze-content{
+    max-width:900px;
+    margin:auto;
+    padding:30px;
+}
+
+.analyze-content h1{
+    color:#1976d2;
+}
+
+.result-card{
+
+    margin-top:30px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:10px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+
+}
+
+.result-card h2{
+    color:#1976d2;
+}
+
+.result-card p{
+    margin:12px 0;
+    line-height:1.6;
+}
