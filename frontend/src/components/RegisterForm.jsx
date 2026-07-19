@@ -156,9 +156,8 @@ function RegisterForm() {
                         >
                             <option value="Doctor">Doctor</option>
                             <option value="Nurse">Nurse</option>
-                            <option value="Administrator">Administrator</option>
                         </select>
-
+                        
                     </div>
 
                     <button
