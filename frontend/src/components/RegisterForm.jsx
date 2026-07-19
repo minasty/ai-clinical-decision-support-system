@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register as registerService } from "../services/authService";
+import "./RegisterForm.css";
 
 function RegisterForm() {
 
@@ -52,7 +53,6 @@ function RegisterForm() {
 
             setSuccess(response.message);
 
-            // Redirect to login after 2 seconds
             setTimeout(() => {
                 navigate("/login");
             }, 2000);
@@ -71,98 +71,107 @@ function RegisterForm() {
 
     return (
 
-        <div className="register-container">
+        <div className="register-wrapper">
 
-            <h2>Create Account</h2>
+            <div className="register-card">
 
-            {error && (
-                <p style={{ color: "red" }}>
-                    {error}
-                </p>
-            )}
+                <div className="register-header">
 
-            {success && (
-                <p style={{ color: "green" }}>
-                    {success}
-                </p>
-            )}
+                    <h2>Create Account</h2>
 
-            <form onSubmit={handleSubmit}>
-
-                <div>
-
-                    <label>Full Name</label>
-
-                    <input
-                        type="text"
-                        name="full_name"
-                        value={formData.full_name}
-                        onChange={handleChange}
-                        placeholder="Enter full name"
-                    />
+                    <p>
+                        Register to access the AI Clinical Decision Support System
+                    </p>
 
                 </div>
 
-                <br />
+                {error && (
 
-                <div>
+                    <div className="alert error-alert">
+                        {error}
+                    </div>
 
-                    <label>Email</label>
+                )}
 
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Enter email"
-                    />
+                {success && (
 
-                </div>
+                    <div className="alert success-alert">
+                        {success}
+                    </div>
 
-                <br />
+                )}
 
-                <div>
+                <form onSubmit={handleSubmit}>
 
-                    <label>Password</label>
+                    <div className="form-group">
 
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="Enter password"
-                    />
+                        <label>Full Name</label>
 
-                </div>
+                        <input
+                            type="text"
+                            name="full_name"
+                            value={formData.full_name}
+                            onChange={handleChange}
+                            placeholder="Enter your full name"
+                        />
 
-                <br />
+                    </div>
 
-                <div>
+                    <div className="form-group">
 
-                    <label>Role</label>
+                        <label>Email Address</label>
 
-                    <select
-                        name="role"
-                        value={formData.role}
-                        onChange={handleChange}
+                        <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Enter your email"
+                        />
+
+                    </div>
+
+                    <div className="form-group">
+
+                        <label>Password</label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Create a password"
+                        />
+
+                    </div>
+
+                    <div className="form-group">
+
+                        <label>Role</label>
+
+                        <select
+                            name="role"
+                            value={formData.role}
+                            onChange={handleChange}
+                        >
+                            <option value="Doctor">Doctor</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Administrator">Administrator</option>
+                        </select>
+
+                    </div>
+
+                    <button
+                        className="register-btn"
+                        type="submit"
+                        disabled={loading}
                     >
-                        <option value="Doctor">Doctor</option>
-                        <option value="Nurse">Nurse</option>
-                        <option value="Administrator">Administrator</option>
-                    </select>
+                        {loading ? "Creating Account..." : "Create Account"}
+                    </button>
 
-                </div>
+                </form>
 
-                <br />
-
-                <button
-                    type="submit"
-                    disabled={loading}
-                >
-                    {loading ? "Creating Account..." : "Register"}
-                </button>
-
-            </form>
+            </div>
 
         </div>
 
