@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 import Navbar from "../components/Navbar";
-
+import Footer from "../components/Footer";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -109,7 +109,7 @@ function Dashboard() {
                 </section>
 
             </main>
-
+            <Footer />
         </div>
 
     );
