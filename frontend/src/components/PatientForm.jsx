@@ -270,52 +270,55 @@ function PatientForm({ onAnalysisComplete }) {
 
             </label>
 
-            <div className="symptoms">
+<div className="symptoms">
 
-                <h3>Select Patient Symptoms</h3>
+    <h3>Select Patient Symptoms</h3>
 
-                {Object.entries(symptomCategories).map(
+    <div className="categories-grid">
 
-                    ([category, symptoms]) => (
+        {Object.entries(symptomCategories).map(
+            ([category, symptoms]) => (
 
-                        <div
-                            key={category}
-                            className="symptom-category"
-                        >
+                <div
+                    key={category}
+                    className="symptom-category"
+                >
 
-                            <h4>{category}</h4>
+                    <h4>{category}</h4>
 
-                            <div className="symptom-grid">
+                    <div className="symptom-list">
 
-                                {symptoms.map((symptom) => (
+                        {symptoms.map((symptom) => (
 
-                                    <label
-                                        key={symptom}
-                                        className="checkbox"
-                                    >
+                            <label
+                                key={symptom}
+                                className="checkbox"
+                            >
 
-                                        <input
-                                            type="checkbox"
-                                            value={symptom}
-                                            checked={formData.symptoms.includes(symptom)}
-                                            onChange={handleSymptomChange}
-                                        />
+                                <input
+                                    type="checkbox"
+                                    value={symptom}
+                                    checked={formData.symptoms.includes(symptom)}
+                                    onChange={handleSymptomChange}
+                                />
 
-                                        {symptom}
+                                {symptom}
 
-                                    </label>
+                            </label>
 
-                                ))}
+                        ))}
 
-                            </div>
+                    </div>
 
-                        </div>
+                </div>
 
-                    )
+            )
 
-                )}
+        )}
 
-            </div>
+    </div>
+
+</div>
 
             <button
                 type="submit"
