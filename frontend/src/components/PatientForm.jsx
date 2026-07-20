@@ -312,10 +312,6 @@ function PatientForm({ onAnalysisComplete }) {
                                 Female
                             </option>
 
-                            <option value="Other">
-                                Other
-                            </option>
-
                         </select>
 
                     </label>
