@@ -14,30 +14,116 @@ function PatientForm({ onAnalysisComplete }) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    const symptomOptions = [
-        "Fever",
-        "Cough",
-        "Headache",
-        "Fatigue",
-        "Chest Pain",
-        "Shortness of Breath",
-        "Sore Throat",
-        "Nausea",
-        "Vomiting",
-        "Diarrhea"
-    ];
+    const symptomCategories = {
 
-    // Handle text/number inputs
+        "General": [
+            "Fever",
+            "Chills",
+            "Fatigue",
+            "Weight Loss",
+            "Weight Gain",
+            "Night Sweats",
+            "Weakness"
+        ],
+
+        "Respiratory": [
+            "Cough",
+            "Dry Cough",
+            "Productive Cough",
+            "Shortness of Breath",
+            "Wheezing",
+            "Chest Tightness",
+            "Sore Throat",
+            "Runny Nose",
+            "Nasal Congestion",
+            "Sneezing"
+        ],
+
+        "Cardiovascular": [
+            "Chest Pain",
+            "Palpitations",
+            "Rapid Heartbeat",
+            "Slow Heartbeat",
+            "Swollen Legs"
+        ],
+
+        "Gastrointestinal": [
+            "Abdominal Pain",
+            "Nausea",
+            "Vomiting",
+            "Diarrhea",
+            "Constipation",
+            "Loss of Appetite",
+            "Heartburn",
+            "Difficulty Swallowing"
+        ],
+
+        "Neurological": [
+            "Headache",
+            "Dizziness",
+            "Confusion",
+            "Seizures",
+            "Fainting",
+            "Memory Loss",
+            "Difficulty Speaking",
+            "Numbness",
+            "Tingling"
+        ],
+
+        "Musculoskeletal": [
+            "Muscle Pain",
+            "Joint Pain",
+            "Back Pain",
+            "Neck Pain",
+            "Joint Swelling"
+        ],
+
+        "Skin": [
+            "Skin Rash",
+            "Itching",
+            "Bruising",
+            "Pale Skin",
+            "Yellow Skin"
+        ],
+
+        "Urinary": [
+            "Painful Urination",
+            "Frequent Urination",
+            "Blood in Urine",
+            "Dark Urine"
+        ],
+
+        "Endocrine": [
+            "Excessive Thirst",
+            "Frequent Hunger",
+            "Excessive Sweating"
+        ],
+
+        "Mental Health": [
+            "Anxiety",
+            "Depression",
+            "Insomnia",
+            "Mood Changes"
+        ]
+
+    };
+
+    // Handle input fields
+
     const handleChange = (e) => {
 
         setFormData({
+
             ...formData,
+
             [e.target.name]: e.target.value
+
         });
 
     };
 
-    // Handle symptom checkboxes
+    // Handle symptom selection
+
     const handleSymptomChange = (e) => {
 
         const { value, checked } = e.target;
@@ -45,24 +131,31 @@ function PatientForm({ onAnalysisComplete }) {
         if (checked) {
 
             setFormData({
+
                 ...formData,
+
                 symptoms: [...formData.symptoms, value]
+
             });
 
         } else {
 
             setFormData({
+
                 ...formData,
+
                 symptoms: formData.symptoms.filter(
                     symptom => symptom !== value
                 )
+
             });
 
         }
 
     };
 
-    // Submit patient information
+    // Submit form
+
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -76,7 +169,9 @@ function PatientForm({ onAnalysisComplete }) {
             formData.symptoms.length === 0
         ) {
 
-            setError("Please complete all patient information.");
+            setError(
+                "Please complete all patient information."
+            );
 
             return;
 
@@ -98,8 +193,11 @@ function PatientForm({ onAnalysisComplete }) {
             console.error(err);
 
             setError(
+
                 err.response?.data?.error ||
+
                 "Unable to analyze patient."
+
             );
 
         } finally {
@@ -120,9 +218,13 @@ function PatientForm({ onAnalysisComplete }) {
             <h2>Patient Information</h2>
 
             {error && (
-                <p className="error">
+
+                <div className="error">
+
                     {error}
-                </p>
+
+                </div>
+
             )}
 
             <label>
@@ -134,6 +236,7 @@ function PatientForm({ onAnalysisComplete }) {
                     name="age"
                     value={formData.age}
                     onChange={handleChange}
+                    placeholder="Enter patient's age"
                 />
 
             </label>
@@ -148,6 +251,7 @@ function PatientForm({ onAnalysisComplete }) {
                     name="temperature"
                     value={formData.temperature}
                     onChange={handleChange}
+                    placeholder="36.5"
                 />
 
             </label>
@@ -161,32 +265,55 @@ function PatientForm({ onAnalysisComplete }) {
                     name="heart_rate"
                     value={formData.heart_rate}
                     onChange={handleChange}
+                    placeholder="72"
                 />
 
             </label>
 
             <div className="symptoms">
 
-                <h3>Symptoms</h3>
+                <h3>Select Patient Symptoms</h3>
 
-                {symptomOptions.map((symptom) => (
+                {Object.entries(symptomCategories).map(
 
-                    <label
-                        key={symptom}
-                        className="checkbox"
-                    >
+                    ([category, symptoms]) => (
 
-                        <input
-                            type="checkbox"
-                            value={symptom}
-                            onChange={handleSymptomChange}
-                        />
+                        <div
+                            key={category}
+                            className="symptom-category"
+                        >
 
-                        {symptom}
+                            <h4>{category}</h4>
 
-                    </label>
+                            <div className="symptom-grid">
 
-                ))}
+                                {symptoms.map((symptom) => (
+
+                                    <label
+                                        key={symptom}
+                                        className="checkbox"
+                                    >
+
+                                        <input
+                                            type="checkbox"
+                                            value={symptom}
+                                            checked={formData.symptoms.includes(symptom)}
+                                            onChange={handleSymptomChange}
+                                        />
+
+                                        {symptom}
+
+                                    </label>
+
+                                ))}
+
+                            </div>
+
+                        </div>
+
+                    )
+
+                )}
 
             </div>
 
@@ -195,9 +322,15 @@ function PatientForm({ onAnalysisComplete }) {
                 disabled={loading}
             >
 
-                {loading
-                    ? "Analyzing..."
-                    : "Analyze Patient"}
+                {
+
+                    loading
+
+                        ? "Analyzing Patient..."
+
+                        : "Analyze Patient"
+
+                }
 
             </button>
 
