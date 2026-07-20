@@ -34,75 +34,143 @@ async function callGemini(prompt, retries = 3) {
   throw new Error("Gemini unavailable after retries");
 }
 
+
 async function analyzePatient(data) {
-  const { temperature, heart_rate, symptoms, age } = data;
+
+  const {
+    patient_name,
+    gender,
+    age,
+    weight,
+    height,
+    blood_pressure,
+    oxygen_saturation,
+    pregnancy_status,
+    temperature,
+    heart_rate,
+    symptoms
+  } = data;
+
 
   const prompt = `
 You are a clinical decision support assistant.
 
-Patient Data:
-- Age: ${age}
+PATIENT INFORMATION:
+
+- Patient Name: ${patient_name}
+- Gender: ${gender}
+- Age: ${age} years
+- Weight: ${weight} kg
+- Height: ${height} cm
+- Blood Pressure: ${blood_pressure} mmHg
+- Oxygen Saturation: ${oxygen_saturation} %
+- Pregnancy Status: ${pregnancy_status}
 - Temperature: ${temperature} °C
 - Heart Rate: ${heart_rate} bpm
-- Symptoms: ${symptoms.join(", ")}
+- Symptoms: ${Array.isArray(symptoms) ? symptoms.join(", ") : symptoms}
+
 
 TASK:
-- Suggest possible conditions (NOT final diagnosis)
+- Suggest possible medical conditions (NOT final diagnosis)
 - Assign risk level: Low, Medium, High
-- Give clear recommendation
-- Provide short clinical summary
+- Provide clinical recommendations
+- Provide a short patient summary
+
 
 IMPORTANT RULES:
 - Be medically cautious
-- Do NOT give a final diagnosis
+- Do NOT provide a final diagnosis
+- Consider all available patient information
 - Return ONLY valid JSON
-- NO markdown, NO backticks, NO explanations
+- NO markdown
+- NO backticks
+- NO explanations outside JSON
+
 
 OUTPUT FORMAT:
+
 {
-  "diagnosis": "possible conditions only",
+  "patient_name": "",
+  "possible_conditions": [
+    "condition 1",
+    "condition 2"
+  ],
   "risk": "Low | Medium | High",
-  "recommendation": "clear clinical advice",
+  "recommendation": "clinical advice",
   "summary": "short patient summary"
 }
+
 `;
 
+
   try {
+
     const dataRes = await callGemini(prompt);
 
     let text = dataRes.candidates[0].content.parts[0].text;
 
-    // 🧹 CLEAN OUTPUT (VERY IMPORTANT)
+
+    // 🧹 CLEAN GEMINI RESPONSE
     text = text.replace(/```json|```/g, "").trim();
+
 
     let parsed;
 
+
     try {
+
       parsed = JSON.parse(text);
+
     } catch (err) {
+
       console.log("JSON parse failed, using fallback");
 
       parsed = {
-        diagnosis: "Unstructured AI response",
+        patient_name: patient_name,
+        possible_conditions: [
+          "Unstructured AI response"
+        ],
         risk: "Unknown",
         recommendation: text,
         summary: text
       };
+
     }
+
 
     return parsed;
 
-  } catch (error) {
-    console.error("Gemini API Error:", error.response?.data || error.message);
 
-    // 🛡️ SAFE FALLBACK (NEVER FAIL SYSTEM)
+  } catch (error) {
+
+    console.error(
+      "Gemini API Error:",
+      error.response?.data || error.message
+    );
+
+
+    // 🛡️ SAFE FALLBACK
     return {
-      diagnosis: "Service unavailable",
+
+      patient_name: patient_name,
+
+      possible_conditions: [
+        "Service unavailable"
+      ],
+
       risk: "Unknown",
-      recommendation: "Please try again or use clinical assessment",
-      summary: "AI system temporarily unavailable"
+
+      recommendation:
+        "Please try again or use clinical assessment",
+
+      summary:
+        "AI system temporarily unavailable"
+
     };
+
   }
+
 }
+
 
 module.exports = { analyzePatient };
