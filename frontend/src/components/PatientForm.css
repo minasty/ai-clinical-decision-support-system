@@ -1,113 +1,354 @@
-.patient-form{
+/* ===========================================
+   Patient Form
+=========================================== */
 
-    background:white;
+.patient-form {
 
-    padding:30px;
+    max-width: 1000px;
 
-    border-radius:10px;
+    margin: 30px auto;
 
-    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    padding: 35px;
 
-}
+    background: #ffffff;
 
-.patient-form h2{
+    border-radius: 12px;
 
-    margin-bottom:20px;
-
-    color:#1976d2;
-
-}
-
-.patient-form label{
-
-    display:block;
-
-    margin-bottom:15px;
-
-    font-weight:600;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 
 }
 
-.patient-form input{
+/* ===========================================
+   Headings
+=========================================== */
 
-    width:100%;
+.patient-form h2 {
 
-    padding:10px;
+    text-align: center;
 
-    margin-top:5px;
+    color: #1565c0;
 
-    border:1px solid #ccc;
+    margin-bottom: 10px;
 
-    border-radius:6px;
-
-    box-sizing:border-box;
-
-}
-
-.symptoms{
-
-    margin:25px 0;
+    font-size: 30px;
 
 }
 
-.checkbox{
+.patient-form h3 {
 
-    display:flex !important;
+    margin-top: 30px;
 
-    align-items:center;
+    margin-bottom: 20px;
 
-    gap:10px;
+    color: #1976d2;
 
-    margin-bottom:10px;
-
-    font-weight:normal !important;
+    font-size: 22px;
 
 }
 
-.checkbox input{
+.patient-form h4 {
 
-    width:auto;
+    margin-bottom: 15px;
 
-}
+    color: #0d47a1;
 
-.patient-form button{
+    border-left: 5px solid #1976d2;
 
-    width:100%;
+    padding-left: 10px;
 
-    padding:14px;
-
-    border:none;
-
-    border-radius:6px;
-
-    background:#1976d2;
-
-    color:white;
-
-    font-size:16px;
-
-    cursor:pointer;
+    font-size: 18px;
 
 }
 
-.patient-form button:hover{
+/* ===========================================
+   Labels
+=========================================== */
 
-    background:#1565c0;
+.patient-form label {
+
+    display: block;
+
+    margin-bottom: 18px;
+
+    font-weight: 600;
+
+    color: #333;
 
 }
 
-.patient-form button:disabled{
+/* ===========================================
+   Inputs
+=========================================== */
 
-    background:#999;
+.patient-form input[type="number"],
+.patient-form input[type="text"] {
 
-    cursor:not-allowed;
+    width: 100%;
+
+    padding: 12px 15px;
+
+    margin-top: 8px;
+
+    border: 1px solid #cfd8dc;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+    transition: all 0.3s ease;
 
 }
 
-.error{
+.patient-form input:focus {
 
-    color:red;
+    outline: none;
 
-    margin-bottom:20px;
+    border-color: #1976d2;
+
+    box-shadow: 0 0 6px rgba(25, 118, 210, 0.25);
+
+}
+
+/* ===========================================
+   Symptoms Section
+=========================================== */
+
+.symptoms {
+
+    margin-top: 30px;
+
+}
+
+/* Category Card */
+
+.symptom-category {
+
+    background: #f8fbff;
+
+    border: 1px solid #d6e8ff;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+/* Symptom Grid */
+
+.symptom-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 12px;
+
+}
+
+/* Checkbox Card */
+
+.checkbox {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    background: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    font-weight: 500;
+
+}
+
+.checkbox:hover {
+
+    background: #e3f2fd;
+
+    border-color: #1976d2;
+
+    transform: translateY(-2px);
+
+}
+
+.checkbox input {
+
+    width: 18px;
+
+    height: 18px;
+
+    cursor: pointer;
+
+}
+
+/* ===========================================
+   Button
+=========================================== */
+
+.patient-form button {
+
+    width: 100%;
+
+    margin-top: 30px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #1976d2;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.patient-form button:hover {
+
+    background: #1565c0;
+
+}
+
+.patient-form button:disabled {
+
+    background: #90a4ae;
+
+    cursor: not-allowed;
+
+}
+
+/* ===========================================
+   Error Message
+=========================================== */
+
+.error {
+
+    background: #ffebee;
+
+    color: #c62828;
+
+    border: 1px solid #ef9a9a;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+}
+
+/* ===========================================
+   Success Message (Future Use)
+=========================================== */
+
+.success {
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    border: 1px solid #81c784;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+}
+
+/* ===========================================
+   Responsive Design
+=========================================== */
+
+@media (max-width: 768px) {
+
+    .patient-form {
+
+        padding: 20px;
+
+        margin: 15px;
+
+    }
+
+    .patient-form h2 {
+
+        font-size: 24px;
+
+    }
+
+    .patient-form h3 {
+
+        font-size: 20px;
+
+    }
+
+    .patient-form h4 {
+
+        font-size: 17px;
+
+    }
+
+    .symptom-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .patient-form button {
+
+        font-size: 16px;
+
+    }
+
+}
+
+/* ===========================================
+   Large Screens
+=========================================== */
+
+@media (min-width: 1200px) {
+
+    .patient-form {
+
+        max-width: 1100px;
+
+    }
+
+    .symptom-grid {
+
+        grid-template-columns: repeat(3, 1fr);
+
+    }
 
 }
