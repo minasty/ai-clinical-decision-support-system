@@ -122,17 +122,27 @@ npm start
 
 ## 📸 Screenshots
 
-### 🔹 Patient Input Form
+### 🔹 Staff Login Form
 
 ![Form](app-screenshots/LoginForm.jpg)
 
+### 🔹 Dashboard
+
+![Result](app-screenshots/Dashboard.jpg)
+
+### 🔹 Patient Input Form
+![Form](app-screenshots/Patient_info_input.jpg)
+![Form](app-screenshots/patient_symptoms_selection.jpg)
+![Form](app-screenshots/patient_symptoms_selection2.jpg)
+![Form](app-screenshots/patient_symptoms_selection3.jpg)
+
 ### 🔹 AI Clinical Result
 
-![Result](app-screenshots/result_UI.jpg)
+![Result](app-screenshots/AI_analysis_result.jpg)
 
 ### 🔹 Patient History
 
-![History](app-screenshots/patient_history_UI.jpg)
+![History](app-screenshots/patient_analysis_history.jpg)
 
 ---
 
