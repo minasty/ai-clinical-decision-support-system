@@ -124,7 +124,7 @@ npm start
 
 ### 🔹 Patient Input Form
 
-![Form](app-screenshots/input_UI.jpg)
+![Form](app-screenshots/LoginForm.jpg)
 
 ### 🔹 AI Clinical Result
 
