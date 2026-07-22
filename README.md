@@ -3,8 +3,8 @@
 ## 🌐 Live Demo
 👉 https://ai-clinical-decision-support-system-beige.vercel.app/
 ### Demo Account:
-Email:demo@hospital.com
-password:Demo123!
+Email:demo@hospital.com,  
+Password:Demo123!
 ---
 
 ## 📌 Overview
